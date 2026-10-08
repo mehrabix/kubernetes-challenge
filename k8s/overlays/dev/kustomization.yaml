@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+# Development: a single replica, a smaller autoscaling envelope and a
+# dev-specific greeting.
+replicas:
+  - name: hello
+    count: 1
+
+patches:
+  - path: patch-configmap.yaml
+  - path: patch-hpa.yaml
